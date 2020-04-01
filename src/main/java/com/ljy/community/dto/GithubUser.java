@@ -1,8 +1,8 @@
 package com.ljy.community.dto;
 
 public class GithubUser {
-    private long id;
     private String name;
+    private Long id;
     private String bio;
 
     public long getId() {
@@ -27,5 +27,14 @@ public class GithubUser {
 
     public void setBio(String bio) {
         this.bio = bio;
+    }
+
+    @Override
+    public String toString() {
+        return "GithubUser{" +
+                "name='" + name + '\'' +
+                ", id=" + id +
+                ", bio='" + bio + '\'' +
+                '}';
     }
 }
