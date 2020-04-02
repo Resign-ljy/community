@@ -77,6 +77,17 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+            <plugin>
+                <groupId>org.flywaydb</groupId>
+                <artifactId>flyway-maven-plugin</artifactId>
+                <version>6.1.0</version>
+                <configuration>
+                    <url>jdbc:mysql://localhost:3306/new_schema</url>
+                    <user>root</user>
+                    <password>1234</password>
+                    <driver>com.mysql.jdbc.Driver</driver>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
 
