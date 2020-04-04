@@ -1,4 +1,5 @@
 package com.ljy.community.mapper;
+import com.ljy.community.dto.QuestionDTO;
 import com.ljy.community.model.Question;
 import org.apache.ibatis.annotations.Insert;
 import org.apache.ibatis.annotations.Mapper;
@@ -23,4 +24,7 @@ public interface QuestionMapper {
 
     @Select("select count(1) from question where creator=#{userId}")
     Integer countByUserId(@Param(value = "userId")Integer userId);
+
+    @Select("select * from question where id=#{id}")
+    Question getById(@Param(value = "id")Integer id);
 }
