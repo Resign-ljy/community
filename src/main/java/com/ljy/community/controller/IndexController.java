@@ -32,15 +32,15 @@ public class IndexController {
                         @RequestParam(name="size",defaultValue="5") Integer size){
         //得到token
         Cookie[] cookies=request.getCookies();
-        if (cookies != null && cookies.length != 0)
-            for (Cookie cookie : cookies) {
-                if (cookie.getName().equals("token")) {
-                    String token = cookie.getValue();
-                    //根据token去数据库中查找是否有该用户，判断是否存在该用户,从而实现持久化登录
-                    User user = userMapper.findByToken(token);
-                    if (user != null) {
-                        request.getSession().setAttribute("user", user);
-                    }
+                    if (cookies != null && cookies.length != 0)
+                        for (Cookie cookie : cookies) {
+                            if (cookie.getName().equals("token")) {
+                                String token = cookie.getValue();
+                                //根据token去数据库中查找是否有该用户，判断是否存在该用户,从而实现持久化登录
+                                User user = userMapper.findByToken(token);
+                                if (user != null) {
+                                    request.getSession().setAttribute("user", user);
+                                }
                     break;
                 }
             }
