@@ -2,6 +2,8 @@ package com.ljy.community.service;
 
 import com.ljy.community.dto.PaginationDTO;
 import com.ljy.community.dto.QuestionDTO;
+import com.ljy.community.exception.CustomizeErrorCode;
+import com.ljy.community.exception.CustomizeException;
 import com.ljy.community.mapper.QuestionMapper;
 import com.ljy.community.mapper.UserMapper;
 import com.ljy.community.model.Question;
@@ -79,13 +81,15 @@ public class QuestionService {
             questionDTO.setUser(user);
             questionDTOList.add(questionDTO);
         }
-
         paginationDTO.setQuestions(questionDTOList);
         return paginationDTO;
     }
 
-    public QuestionDTO getById(Integer id) {
+    public QuestionDTO getById(Integer id)  {
         Question question=questionMapper.selectByPrimaryKey(id);
+        if (question==null){
+            throw new CustomizeException("你找的问题不在了，换一个试试");
+        }
         QuestionDTO questionDTO=new QuestionDTO();
         BeanUtils.copyProperties(question,questionDTO);
         User user=userMapper.selectByPrimaryKey(question.getCreator());
@@ -108,7 +112,10 @@ public class QuestionService {
             updateQuestion.setTag(question.getTag());
             QuestionExample example = new QuestionExample();
             example.createCriteria().andIdEqualTo(question.getId());
-            questionMapper.updateByExampleSelective(updateQuestion, example);
+            int updated=questionMapper.updateByExampleSelective(updateQuestion, example);
+            if (updated!=1){
+                throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
+            }
         }
     }
 }
