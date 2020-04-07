@@ -1,11 +1,13 @@
 package com.ljy.community;
 // 这里也不会报错了如果是要使用lombok的话还要安装一个插件，安装插件要翻墙，为了下载jar包不报错就等下面的build完成了之后再去开那个小飞机去下载插件
 
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 // 现在要删除一些初始化没有用的文件了
 @SpringBootApplication
+@MapperScan( "com.ljy.community.mapper")
 public class CommunityApplication {
 
     public static void main(String[] args) {
