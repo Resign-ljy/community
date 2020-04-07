@@ -4,6 +4,7 @@ import com.ljy.community.dto.PaginationDTO;
 import com.ljy.community.dto.QuestionDTO;
 import com.ljy.community.exception.CustomizeErrorCode;
 import com.ljy.community.exception.CustomizeException;
+import com.ljy.community.mapper.QuestionExtMapper;
 import com.ljy.community.mapper.QuestionMapper;
 import com.ljy.community.mapper.UserMapper;
 import com.ljy.community.model.Question;
@@ -24,6 +25,9 @@ public class QuestionService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private QuestionExtMapper questionExtMapper;
 
     public PaginationDTO list(Integer page, Integer size) {
 
@@ -117,5 +121,12 @@ public class QuestionService {
                 throw new CustomizeException(CustomizeErrorCode.QUESTION_NOT_FOUND);
             }
         }
+    }
+
+    public void incView(Integer id) {
+        Question question = new Question();
+        question.setId(id);
+        question.setViewCount(1);
+        questionExtMapper.incView(question);
     }
 }
