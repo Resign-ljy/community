@@ -9,6 +9,15 @@
     <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
     <script src="js/bootstrap.min.js" type="application/javascript"></script>
 </head>
+<script type="application/javascript">
+    window.onload=function () {
+        var closable = window.localStorage.getItem("closable");
+        if (closable){
+            window.close();
+            window.localStorage.removeItem("closable");
+        }
+    }
+</script>
 <body>
 <div th:insert="navigation::nav"></div>
 <div class="container-fluid main">
@@ -30,7 +39,7 @@
                     </h4>
                     <span th:text="${question.description}"></span><br>
                     <span class="text-desc" style="font-size: 12px;font-weight: normal;color: #999;"><span th:text="${question.commentCount}"></span> 个回复· <span th:text="${question.viewCount}"></span> 次浏览·
-                    <span th:text="${#dates.format(question.getGmtCreate())}"></span>
+                    <span th:text="${#dates.format(question.getGmtCreate(),'yyyy-MM-dd')}"></span>
                     </span>
                 </div>
             </div>

@@ -16,5 +16,11 @@
     set
     VIEW_COUNT = VIEW_COUNT + #{viewCount,jdbcType=INTEGER}
     where id = #{id}
+
+    </update>  <update id="incCommentCount" parameterType="com.ljy.community.model.Question">
+    update QUESTION
+    set
+    comment_count = comment_count + #{commentCount,jdbcType=INTEGER}
+    where id = #{id}
     </update>
 </mapper>
