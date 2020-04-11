@@ -47,6 +47,9 @@ body{
     font-size: 15px;
     cursor: pointer;
 }
+.menu .active{
+    color: #499ef3;
+}
 .menu .icon:hover{
     color: #499ef3;
 }
@@ -58,3 +61,26 @@ body{
 .question-title{
     margin-top: 25px;
 }
+.sub-comments{
+    border-radius: 6px;
+    margin-top: 10px;
+    border: 1px solid #eee;
+    padding-top: 15px;
+    margin-bottom: 15px;
+}
+.sub-comments .btn{
+    margin: 10px 0;
+}
+
+.question-tag{
+    margin-right: 5px;
+}
+
+.question-related{
+    line-height: 20px;
+    font-size: 12px;
+    padding-left: 0;
+    list-style: none;
+
+}
+
