@@ -43,5 +43,6 @@
         <table schema="new_schema" tableName="user" domainObjectName="User" ></table>
         <table schema="new_schema" tableName="question" domainObjectName="Question" ></table>
         <table schema="new_schema" tableName="comment" domainObjectName="Comment" ></table>
+        <table schema="new_schema" tableName="notification" domainObjectName="Notification" ></table>
     </context>
 </generatorConfiguration>

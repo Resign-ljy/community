@@ -2,6 +2,7 @@ package com.ljy.community.service;
 
 import com.ljy.community.dto.CommentDTO;
 import com.ljy.community.enums.CommentTypeEnum;
+import com.ljy.community.enums.NotificationTypeEnum;
 import com.ljy.community.exception.CustomizeErrorCode;
 import com.ljy.community.exception.CustomizeException;
 import com.ljy.community.mapper.*;
@@ -34,6 +35,9 @@ public class CommentService {
 
     @Autowired
     private CommentExtMapper commentExtMapper;
+
+    @Autowired
+    private NotificationMapper notificationMapper;
     @Transactional
     public void insert(Comment comment) {
         if (comment.getParentId()==null||comment.getParentId()==0){
@@ -54,6 +58,13 @@ public class CommentService {
             parentComment.setId(comment.getParentId());
             parentComment.setCommentCount(1);
             commentExtMapper.incCommentCount(parentComment);
+            Notification notification = new Notification();
+            notification.setGmtCreate(System.currentTimeMillis());
+            notification.setType(NotificationTypeEnum.REPLY_COMMENT.getType());
+            notification.setOuterid(comment.getParentId());
+            notification.setNotifier(comment.getCommentator());
+            notification.setStatus();
+            notificationMapper.insert(notification);
         }else {
             //回复问题
             Question question = questionMapper.selectByPrimaryKey(comment.getParentId());
